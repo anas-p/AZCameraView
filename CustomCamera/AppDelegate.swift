@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -40,30 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-    
-//    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-//        if let _ = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController) as? CameraViewController {
-//            // Unlock all view
-//            return .all
-//        }
-//        // Only allow landscape (standard behaviour)
-//        return .landscape
-//    }
-//    
-//    private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController? {
-//        if (rootViewController == nil) { return nil }
-//        
-//        if rootViewController.isKind(of: CameraViewController.self) {
-//            return rootViewController
-//        } else if rootViewController.isKind(of: UINavigationController.self) {
-//            return topViewControllerWithRootViewController(rootViewController: (rootViewController as! UINavigationController).visibleViewController)
-//        } else if (rootViewController.presentedViewController != nil) {
-//            return topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController)
-//        }
-//        return rootViewController
-//    }
- 
     
 }
 

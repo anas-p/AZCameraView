@@ -2,9 +2,9 @@
 //  CameraController.swift
 //  AV Foundation
 //
-//  Created by Pranjal Satija on 29/5/2017.
-//  Copyright © 2017 AppCoda. All rights reserved.
-//
+//  Created by 🅐🅝🅐🅢 on 24/06/18.
+//  Copyright © 2018 nfnlabs. All rights reserved.
+//  GitHub: https://github.com/anasamanp/AZCameraView
 
 import AVFoundation
 import UIKit
@@ -64,12 +64,16 @@ extension CameraController {
                 
             else { throw CameraControllerError.noCamerasAvailable }
         }
-        
+         
         func configurePhotoOutput() throws {
             guard let captureSession = self.captureSession else { throw CameraControllerError.captureSessionIsMissing }
             
             self.photoOutput = AVCapturePhotoOutput()
-            self.photoOutput!.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
+            if #available(iOS 11.0, *) {
+                self.photoOutput!.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
+            } else {
+                self.photoOutput!.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecJPEG])], completionHandler: nil)
+            }
             
             if captureSession.canAddOutput(self.photoOutput!) { captureSession.addOutput(self.photoOutput!) }
             captureSession.startRunning()

@@ -4,10 +4,18 @@
 //
 //  Created by 🅐🅝🅐🅢 on 24/06/18.
 //  Copyright © 2018 nfnlabs. All rights reserved.
-//
+//  GitHub: https://github.com/anasamanp/AZCameraView
 
 import UIKit
 import Photos
+
+protocol CameraViewControllerDelagate {
+    /**
+     Get the captured photos
+     - parameter photos: Photos array
+     */
+    func getCapturedPhotos(photos: [UIImage])
+}
 
 class CameraViewController: UIViewController {
     
@@ -20,20 +28,24 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var btnFlashToggle: UIButton!
     @IBOutlet weak var btnCount: UIButton!
     @IBOutlet weak var lblMaxAlert: UILabel!
+    @IBOutlet weak var photoPreviewView: UIView!
     
     // MARK: - Variables
+    var photosCountLimit = 5
+    var delegate: CameraViewControllerDelagate?
     let cameraController = CameraController()
     var photos = [UIImage]()
     
     var widthConstraint = NSLayoutConstraint()
     var rightConstraint = NSLayoutConstraint()
     
+    
     // MARK: - View Lifecycle
-    
-    override var prefersStatusBarHidden: Bool { return true }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.previewTapped(rocignizer:)))
+        self.photoPreviewView.addGestureRecognizer(tapGesture)
         
         self.hideOrShowPreview()
         configureCameraController()
@@ -44,6 +56,9 @@ class CameraViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChanged(notification:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
+    
+    //Uncomment this to remove status bar
+    //    override var prefersStatusBarHidden: Bool { return true }
     
     @objc func orientationChanged(notification:Notification){
         switch UIDevice.current.orientation {
@@ -76,6 +91,62 @@ class CameraViewController: UIViewController {
         lblMaxAlert.layer.cornerRadius = 3
     }
     
+    // MARK: - Actions
+    // Capture the photo
+    @IBAction func btnCaptureOnClick(_ sender: UIButton) {
+        cameraController.captureImage {(image, error) in
+            guard let image = image else {
+                print(error ?? "Image capture error")
+                return
+            }
+            
+            self.photos.append(image)
+            self.hideOrShowPreview()
+            
+            //Save photos to library
+            //Uncomment this if you don't want to save to PhotoLibrary
+            try? PHPhotoLibrary.shared().performChangesAndWait {
+                PHAssetChangeRequest.creationRequestForAsset(from: image)
+            }
+        }
+    }
+    
+    // Action for add button
+    @IBAction func btnAddOnClick(_ sender: UIButton) {
+        self.delegate?.getCapturedPhotos(photos: self.photos)
+    }
+    
+    // Action for cancel button
+    @IBAction func btnCloseOnClick(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // Action for flash button
+    @IBAction func btnFlashToggleOnClick(_ sender: UIButton) {
+        if cameraController.flashMode == .on {
+            cameraController.flashMode = .off
+            btnFlashToggle.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
+        }
+        else {
+            cameraController.flashMode = .on
+            btnFlashToggle.setImage(#imageLiteral(resourceName: "Flash On Icon"), for: .normal)
+        }
+    }
+    
+    // When tap on preview
+    @objc func previewTapped(rocignizer: UIGestureRecognizer) {
+        if let photoPVC = UIStoryboard(name: "Camera", bundle: nil).instantiateViewController(withIdentifier: "PhotoPreviewController") as? PhotoPreviewController{
+            photoPVC.delegate = self
+            photoPVC.previewPhotos = self.photos
+            photoPVC.modalPresentationStyle = .fullScreen
+            photoPVC.modalTransitionStyle = .crossDissolve
+            self.present(photoPVC, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - Helper Methods
+    
+    /// Set/change icons when change the orientation
     func setFramesForPortrait(){
         UIView.animate(withDuration: 0.3) {
             self.btnCapture.transform = CGAffineTransform(rotationAngle: 0)
@@ -96,44 +167,11 @@ class CameraViewController: UIViewController {
         }
     }
     
-    // MARK: - Actions
-    @IBAction func btnCaptureOnClick(_ sender: UIButton) {
-        cameraController.captureImage {(image, error) in
-            guard let image = image else {
-                print(error ?? "Image capture error")
-                return
-            }
-            
-            self.photos.append(image)
-            self.hideOrShowPreview()
-            
-            //Save photos to library
-            try? PHPhotoLibrary.shared().performChangesAndWait {
-                PHAssetChangeRequest.creationRequestForAsset(from: image)
-            }
-        }
-    }
-    
-    @IBAction func btnAddOnClick(_ sender: UIButton) {
-    }
-    
-    @IBAction func btnCloseOnClick(_ sender: UIButton) {
-    }
-    
-    @IBAction func btnFlashToggleOnClick(_ sender: UIButton) {
-        if cameraController.flashMode == .on {
-            cameraController.flashMode = .off
-            btnFlashToggle.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
-        }
-        else {
-            cameraController.flashMode = .on
-            btnFlashToggle.setImage(#imageLiteral(resourceName: "Flash On Icon"), for: .normal)
-        }
-    }
-    
-    // MARK: - Helper Methods
+    /**
+     Manage UI respect to photos count / Hide or show elements
+     */
     func hideOrShowPreview(){
-        if photos.count == 5{
+        if photos.count == self.photosCountLimit{
             btnCapture.isUserInteractionEnabled = false
             btnCapture.alpha = 0.5
             lblMaxAlert.isHidden = false
@@ -143,15 +181,20 @@ class CameraViewController: UIViewController {
             btnCapture.alpha = 1
             lblMaxAlert.isHidden = true
         }
+        
         if photos.count > 0{
+            self.btnAdd.isHidden = false
             self.btnCount.isHidden = false
             self.photoPreview.isHidden = false
+            self.photoPreviewView.isHidden = false
             self.photoPreview.image = self.photos.last
             self.btnCount.setTitle("\(self.photos.count)", for: .normal)
         }
         else{
+            self.btnAdd.isHidden = true
             self.btnCount.isHidden = true
             self.photoPreview.isHidden = true
+            self.photoPreviewView.isHidden = true
         }
     }
     
@@ -166,6 +209,18 @@ class CameraViewController: UIViewController {
         }
     }
     
-    
 }
+
+// MARK: - PhotoPreviewControllerDelegate
+extension CameraViewController: PhotoPreviewControllerDelegate {
+    func deletedPhotoIndex(index: Int) {
+        self.photos.remove(at: index)
+        self.photoPreview.image = self.photos.last
+        self.btnCount.setTitle("\(self.photos.count)", for: .normal)
+        self.hideOrShowPreview()
+    }
+}
+
+
+
 

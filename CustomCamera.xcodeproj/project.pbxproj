@@ -13,6 +13,8 @@
 		260FAEF820DF780C0036E494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 260FAEF720DF780C0036E494 /* Assets.xcassets */; };
 		260FAEFB20DF780C0036E494 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 260FAEF920DF780C0036E494 /* LaunchScreen.storyboard */; };
 		260FAF0720DFA36E0036E494 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260FAF0620DFA36E0036E494 /* CameraController.swift */; };
+		26BF2F7F20E4A65300AFBD1E /* PhotoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BF2F7E20E4A65300AFBD1E /* PhotoPreviewController.swift */; };
+		26BF2F8120E4C69D00AFBD1E /* PreviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BF2F8020E4C69D00AFBD1E /* PreviewsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		260FAEFA20DF780C0036E494 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		260FAEFC20DF780C0036E494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		260FAF0620DFA36E0036E494 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		26BF2F7E20E4A65300AFBD1E /* PhotoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewController.swift; sourceTree = "<group>"; };
+		26BF2F8020E4C69D00AFBD1E /* PreviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +61,24 @@
 			isa = PBXGroup;
 			children = (
 				260FAEF020DF78050036E494 /* AppDelegate.swift */,
-				260FAEF220DF78050036E494 /* CameraViewController.swift */,
-				260FAF0620DFA36E0036E494 /* CameraController.swift */,
-				260FAEF420DF78050036E494 /* Camera.storyboard */,
+				26BF2F8220E4E00C00AFBD1E /* Camera Controller */,
 				260FAEF720DF780C0036E494 /* Assets.xcassets */,
 				260FAEF920DF780C0036E494 /* LaunchScreen.storyboard */,
 				260FAEFC20DF780C0036E494 /* Info.plist */,
 			);
 			path = CustomCamera;
+			sourceTree = "<group>";
+		};
+		26BF2F8220E4E00C00AFBD1E /* Camera Controller */ = {
+			isa = PBXGroup;
+			children = (
+				260FAEF220DF78050036E494 /* CameraViewController.swift */,
+				260FAF0620DFA36E0036E494 /* CameraController.swift */,
+				260FAEF420DF78050036E494 /* Camera.storyboard */,
+				26BF2F7E20E4A65300AFBD1E /* PhotoPreviewController.swift */,
+				26BF2F8020E4C69D00AFBD1E /* PreviewsCollectionViewCell.swift */,
+			);
+			path = "Camera Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26BF2F7F20E4A65300AFBD1E /* PhotoPreviewController.swift in Sources */,
+				26BF2F8120E4C69D00AFBD1E /* PreviewsCollectionViewCell.swift in Sources */,
 				260FAF0720DFA36E0036E494 /* CameraController.swift in Sources */,
 				260FAEF320DF78050036E494 /* CameraViewController.swift in Sources */,
 				260FAEF120DF78050036E494 /* AppDelegate.swift in Sources */,
@@ -287,11 +303,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EPRAJ965WT;
 				INFOPLIST_FILE = CustomCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nfnlabs.CustomCamera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nfnlabs.AZCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -305,11 +322,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EPRAJ965WT;
 				INFOPLIST_FILE = CustomCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nfnlabs.CustomCamera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nfnlabs.AZCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
