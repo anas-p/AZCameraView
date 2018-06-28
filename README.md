@@ -1,2 +1,2 @@
 # AZCameraView
-Custom Camera View
+Full view custom camera
