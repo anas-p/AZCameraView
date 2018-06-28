@@ -104,7 +104,7 @@ class CameraViewController: UIViewController {
             self.hideOrShowPreview()
             
             //Save photos to library
-            //Uncomment this if you don't want to save to PhotoLibrary
+            //Comment this if you don't want to save to PhotoLibrary
             try? PHPhotoLibrary.shared().performChangesAndWait {
                 PHAssetChangeRequest.creationRequestForAsset(from: image)
             }
