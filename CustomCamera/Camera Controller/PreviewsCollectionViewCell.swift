@@ -17,8 +17,14 @@ class PreviewsCollectionViewCell: UICollectionViewCell {
         self.layer.borderColor = UIColor.white.cgColor
     }
     
-    func setImage(image:UIImage){
+    func setImage(image:UIImage, selectedIndex: Bool){
         self.imgView.image = image
+        if selectedIndex{
+            self.layer.borderColor = UIColor.red.cgColor
+        }
+        else{
+            self.layer.borderColor = UIColor.white.cgColor
+        }
     }
     
 }

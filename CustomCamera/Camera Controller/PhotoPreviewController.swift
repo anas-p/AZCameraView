@@ -76,8 +76,8 @@ extension PhotoPreviewController: UICollectionViewDataSource {
             collectionView.register(UINib(nibName:"PreviewsCollectionViewCell", bundle:nil), forCellWithReuseIdentifier: "PreviewsCollectionViewCell")
             previewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewsCollectionViewCell", for: indexPath) as? PreviewsCollectionViewCell
         }
-        
-        previewCell?.setImage(image: self.previewPhotos[indexPath.row])
+        let isSelected = self.selectedIndex == indexPath.row ? true : false
+        previewCell?.setImage(image: self.previewPhotos[indexPath.row], selectedIndex: isSelected)
         return previewCell!
     }
     
@@ -88,6 +88,7 @@ extension PhotoPreviewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.row
         self.imgView.image = previewPhotos[indexPath.row]
+        self.collectionView.reloadData()
     }
 }
 
