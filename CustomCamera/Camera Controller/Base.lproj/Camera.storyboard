@@ -244,7 +244,7 @@
                                     <color key="titleColor" red="0.10980392160000001" green="0.1529411765" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnAddOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PfB-dQ-Di9"/>
+                                    <action selector="btnAddOnClick:" destination="685-YW-iVG" eventType="touchUpInside" id="Adc-LJ-nxP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eN-6i-50v">

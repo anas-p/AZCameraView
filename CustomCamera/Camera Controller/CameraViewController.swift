@@ -114,6 +114,7 @@ class CameraViewController: UIViewController {
     // Action for add button
     @IBAction func btnAddOnClick(_ sender: UIButton) {
         self.delegate?.getCapturedPhotos(photos: self.photos)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // Action for cancel button
@@ -218,6 +219,10 @@ extension CameraViewController: PhotoPreviewControllerDelegate {
         self.photoPreview.image = self.photos.last
         self.btnCount.setTitle("\(self.photos.count)", for: .normal)
         self.hideOrShowPreview()
+    }
+    
+    func addPhotosOnClick() {
+        self.delegate?.getCapturedPhotos(photos: self.photos)
     }
 }
 

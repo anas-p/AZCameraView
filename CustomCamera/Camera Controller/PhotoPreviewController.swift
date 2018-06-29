@@ -10,7 +10,9 @@ import UIKit
 
 protocol PhotoPreviewControllerDelegate {
     func deletedPhotoIndex(index:Int)
+    func addPhotosOnClick()
 }
+
 
 class PhotoPreviewController: UIViewController {
 
@@ -58,6 +60,11 @@ class PhotoPreviewController: UIViewController {
         self.imgView.image = self.previewPhotos[selectedIndex]
         self.collectionView.reloadData()
         self.btnDelete.isHidden = previewPhotos.count == 1 ? true : false
+    }
+    
+    @IBAction func btnAddOnClick(_ sender: UIButton) {
+        delegate?.addPhotosOnClick()
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
 }
