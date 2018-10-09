@@ -1,10 +1,10 @@
 # AZCameraView
 
-Full view custom camera
-
+- Full screen camera view
+- Support Orientation
 - Flash
 - Photo count
-- Validate maximum number of photos
+- Photos limit
 - Photo Preview
 - Delete option
 
