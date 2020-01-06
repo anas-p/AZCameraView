@@ -5,7 +5,8 @@
 - Flash
 - Photo count
 - Photos limit
-- Photo Preview
+- Photo preview
+- Image rotation
 - Delete option
 
 ![](https://github.com/anasamanp/AZCameraView/blob/master/an2.png)
