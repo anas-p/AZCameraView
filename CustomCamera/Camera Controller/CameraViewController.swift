@@ -54,7 +54,7 @@ class CameraViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChanged(notification:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChanged(notification:)), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     //Uncomment this to remove status bar
@@ -75,7 +75,7 @@ class CameraViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(NSNotification.Name.UIDeviceOrientationDidChange)
+        NotificationCenter.default.removeObserver(UIDevice.orientationDidChangeNotification)
     }
     
     override func viewDidLayoutSubviews() {

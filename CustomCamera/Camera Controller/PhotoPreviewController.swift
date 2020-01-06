@@ -22,6 +22,8 @@ class PhotoPreviewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var btnDelete: UIButton!
+    @IBOutlet weak var btnRotate: UIButton!
+
     
     // MARK: - Variables
     var delegate : PhotoPreviewControllerDelegate?
@@ -67,6 +69,15 @@ class PhotoPreviewController: UIViewController {
         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func btnRotateOnClick(_ sender: UIButton) {
+        let image = previewPhotos[self.selectedIndex]
+        guard let newImage = image.rotate(radians: .pi/2) else { return }
+        self.previewPhotos.remove(at: self.selectedIndex)
+        self.previewPhotos.insert(newImage, at: self.selectedIndex)
+        self.collectionView.reloadData()
+        self.imgView.image = previewPhotos[self.selectedIndex]
+    }
+    
 }
 
 // MARK: - CollectionView DataSource
@@ -96,6 +107,34 @@ extension PhotoPreviewController: UICollectionViewDelegate {
         self.selectedIndex = indexPath.row
         self.imgView.image = previewPhotos[indexPath.row]
         self.collectionView.reloadData()
+    }
+}
+
+extension UIImage {
+    /**
+     Rotate UIImage
+     - Parameter radians: .pi is 180 deg, .pi/2 is 90 deg, .pi/4 is 45 deg, ..., .pi/180 is 1 deg.
+     */
+    func rotate(radians: Float) -> UIImage? {
+        var newSize = CGRect(origin: CGPoint.zero, size: self.size).applying(CGAffineTransform(rotationAngle: CGFloat(radians))).size
+        // Trim off the extremely small float value to prevent core graphics from rounding it up
+        newSize.width = floor(newSize.width)
+        newSize.height = floor(newSize.height)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, self.scale)
+        let context = UIGraphicsGetCurrentContext()!
+        
+        // Move origin to middle
+        context.translateBy(x: newSize.width/2, y: newSize.height/2)
+        // Rotate around middle
+        context.rotate(by: CGFloat(radians))
+        // Draw the image at its center
+        self.draw(in: CGRect(x: -self.size.width/2, y: -self.size.height/2, width: self.size.width, height: self.size.height))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 }
 

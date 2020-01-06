@@ -113,6 +113,7 @@
 				TargetAttributes = {
 					260FAEEC20DF78050036E494 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -310,7 +311,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nfnlabs.AZCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -329,7 +330,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nfnlabs.AZCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

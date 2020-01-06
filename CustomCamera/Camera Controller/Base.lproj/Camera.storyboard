@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -83,7 +81,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGz-wn-Elx">
-                                <rect key="frame" x="5" y="30" width="50" height="50"/>
+                                <rect key="frame" x="5" y="10" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="QV6-F6-cPn"/>
                                     <constraint firstAttribute="width" constant="50" id="iJX-7P-D07"/>
@@ -105,7 +103,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LR9-DA-hrW">
-                                <rect key="frame" x="320" y="30" width="50" height="50"/>
+                                <rect key="frame" x="320" y="10" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9ib-mv-5My"/>
                                     <constraint firstAttribute="width" constant="50" id="Tqs-YL-TeW"/>
@@ -164,8 +162,20 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q55-2t-vdx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPR-e7-KPP">
+                                <rect key="frame" x="267" y="11" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="820-yJ-PcJ"/>
+                                    <constraint firstAttribute="height" constant="48" id="RIb-sI-BQK"/>
+                                </constraints>
+                                <color key="tintColor" red="0.81568627449999997" green="0.97254901959999995" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="rotate"/>
+                                <connections>
+                                    <action selector="btnRotateOnClick:" destination="685-YW-iVG" eventType="touchUpInside" id="QET-rh-H8g"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGz-WA-91Y">
-                                <rect key="frame" x="5" y="30" width="50" height="50"/>
+                                <rect key="frame" x="5" y="10" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="B8A-g9-Maf"/>
                                     <constraint firstAttribute="height" constant="50" id="vzf-hO-iTZ"/>
@@ -248,7 +258,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eN-6i-50v">
-                                <rect key="frame" x="320" y="30" width="50" height="50"/>
+                                <rect key="frame" x="320" y="10" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2jU-5G-7Jf"/>
                                     <constraint firstAttribute="width" constant="50" id="z0n-Lj-ZUY"/>
@@ -273,6 +283,8 @@
                             <constraint firstItem="kgl-3A-oVJ" firstAttribute="trailing" secondItem="5eN-6i-50v" secondAttribute="trailing" constant="5" id="UAK-gQ-etv"/>
                             <constraint firstItem="kgl-3A-oVJ" firstAttribute="bottom" secondItem="9tt-Yz-mv3" secondAttribute="bottom" constant="20" id="ULk-Lx-fKh"/>
                             <constraint firstItem="zGz-WA-91Y" firstAttribute="leading" secondItem="kgl-3A-oVJ" secondAttribute="leading" constant="5" id="Xbz-7n-I8q"/>
+                            <constraint firstItem="EPR-e7-KPP" firstAttribute="top" secondItem="kgl-3A-oVJ" secondAttribute="top" constant="11" id="ctv-Wv-NzG"/>
+                            <constraint firstItem="5eN-6i-50v" firstAttribute="leading" secondItem="EPR-e7-KPP" secondAttribute="trailing" constant="5" id="f3V-4F-b5K"/>
                             <constraint firstItem="kgl-3A-oVJ" firstAttribute="bottom" secondItem="iK8-Cd-rpb" secondAttribute="bottom" constant="91" id="mN0-Ch-Xia"/>
                             <constraint firstItem="q55-2t-vdx" firstAttribute="leading" secondItem="kgl-3A-oVJ" secondAttribute="leading" id="vLb-aK-Rdd"/>
                             <constraint firstItem="kgl-3A-oVJ" firstAttribute="bottom" secondItem="1Ty-kt-TOM" secondAttribute="bottom" constant="14" id="zxd-Fu-loL"/>
@@ -283,6 +295,7 @@
                         <outlet property="btnAdd" destination="9tt-Yz-mv3" id="Qf3-1b-thC"/>
                         <outlet property="btnDelete" destination="5eN-6i-50v" id="Rhh-6x-SWP"/>
                         <outlet property="btnPhoto" destination="iK8-Cd-rpb" id="92b-Ve-qzO"/>
+                        <outlet property="btnRotate" destination="EPR-e7-KPP" id="bia-Ec-Cjm"/>
                         <outlet property="collectionView" destination="1Ty-kt-TOM" id="eW7-ga-whC"/>
                         <outlet property="imgView" destination="q55-2t-vdx" id="dPL-bI-JGa"/>
                     </connections>
@@ -298,5 +311,6 @@
         <image name="camera_icon_green" width="16" height="15"/>
         <image name="delete_icon" width="15" height="19"/>
         <image name="photo_camera" width="24" height="24"/>
+        <image name="rotate" width="21" height="21"/>
     </resources>
 </document>
